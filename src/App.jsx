@@ -1,9 +1,25 @@
 import './App.css';
 import Board from './components/Board';
 import Home from './components/Home';
+import Leaderboards from './components/Leaderboards';
 import { useState, useEffect } from 'react';
 
 function App() {
+
+  const [results, setResults] = useState({
+    player: {
+      wins: 0,
+      losses: 0,
+      draws: 0
+    },
+    opponent: {
+      wins: 0,
+      losses: 0,
+      draws: 0
+    }
+  });
+
+  const [viewLeaderboards, setViewLeaderboards] = useState(false);
 
   const [board, setBoard] = useState({
     1: null,
@@ -143,13 +159,45 @@ function makeOpponentMove(currentBoardState) {
 
       if (winningCombo.length > 0) {
 
+        let winner;
+
         for (const cell of winningCombo[0]) {
-          setWinner(board[cell])
+          winner = board[cell];
           const element = document.getElementsByClassName('cell')[cell-1]
           element.setAttribute('style', 'background-color: #1c1976; color: #ffdc9f; transition: color 0.2s, background-color 0.2s;')
         }
+
+        if (winner === chars.playerChar) {
+          setResults(prevState => {
+            let results = prevState;
+
+            results.player.wins = results.player.wins + 1;
+            results.opponent.losses = results.opponent.losses + 1;
+
+            setWinner(winner)
+            return results;
+          });
+        } else if (winner === chars.opponentChar)  {
+          setResults(prevState => {
+          let results = prevState;
+
+          results.opponent.wins = results.opponent.wins + 1;
+          results.player.losses = results.player.losses + 1;
+
+          setWinner(winner)
+          return results;
+        });
+        }
       } else {
         setWinner('None');
+        setResults(prevState => {
+          let results = prevState;
+
+          results.player.draws = results.player.draws + 1;
+          results.opponent.draws = results.opponent.draws + 1;
+
+          return results;
+        });
         }
       } else {
         if (!isPlayersTurn) {
@@ -158,7 +206,7 @@ function makeOpponentMove(currentBoardState) {
     }
   }
 
-  }, [board]);
+  }, [board, chars.opponentChar, chars.playerChar, gameState.activeGame, gameState.gameOver, isPlayersTurn, makeOpponentMove, winningCombos]);
 
   function newGame(e) {
     e.preventDefault();
@@ -188,6 +236,29 @@ function makeOpponentMove(currentBoardState) {
     setIsPlayersTurn(true);
   }
 
+  function showLeaderboards(e) {
+    setViewLeaderboards(true);
+  }
+
+  function hideLeaderboards(e) {
+    setViewLeaderboards(false);
+  }
+
+  function resetLeaderboards(e) {
+    setResults({
+      player: {
+        wins: 0,
+        losses: 0,
+        draws: 0
+      },
+      opponent: {
+        wins: 0,
+        losses: 0,
+        draws: 0
+      }
+    })
+  }
+
 
   return (
     <div className="App">
@@ -197,7 +268,21 @@ function makeOpponentMove(currentBoardState) {
       <main className='main'>
       { gameState.newGame 
         ? <Home chooseChar={chooseChar} chars={chars}/>
-        : <Board board={board} chars={chars} makeMove={makeMove} gameState={gameState} newGame={newGame} winner={winner} message={message}/>
+        : viewLeaderboards 
+        ? <Leaderboards 
+                  results={results}
+                  hideLeaderboards={hideLeaderboards}
+                  resetLeaderboards={resetLeaderboards}
+                  />
+        : <Board  board={board} 
+                  chars={chars} 
+                  makeMove={makeMove} 
+                  gameState={gameState} 
+                  newGame={newGame} 
+                  winner={winner} 
+                  message={message}
+                  showLeaderboards={showLeaderboards}
+                  />
       }
       </main>
     </div>

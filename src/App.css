@@ -110,8 +110,7 @@ input[type="radio"] {
 }
 
 .new-game,
-.leaderbards {
-  width: 100vw;
+.leaderboards {
   height: 5vh;
   display: flex;
   justify-content: center;
@@ -123,10 +122,10 @@ input[type="radio"] {
   border: none;
 	padding: 0;
 	outline: inherit;
-  width: 40vw;
+  font-size:larger;
+  width: 10rem;
   height: 5vh;
-  border-radius: 50%;
-  font-size:larger
+  border-radius: 5%;
 }
 
 .game-button:hover {
@@ -134,4 +133,24 @@ input[type="radio"] {
 	color: #1c1976;
 	background: #ffdc9f;
 	border: 2px solid #1c1976;
+}
+
+.leaderboards-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.leaderboards-actions {
+  display: flex;
+  gap: 10vw;
+}
+
+.leaderboards-table {
+  width: 80vw;
+}
+
+.leaderboards-table > tbody > tr > td,
+.leaderboards-table > thead > th {
+  text-align: center;
 }

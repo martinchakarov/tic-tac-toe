@@ -29,7 +29,7 @@ export default function Board(props) {
             </div>
 
             <div className="leaderboards">
-                <button className="game-button leaderbords-button">Leaderbords</button>
+                <button className="game-button leaderbords-button" onClick={props.showLeaderboards}>Leaderbords</button>
             </div>
 
             <div className="new-game">
