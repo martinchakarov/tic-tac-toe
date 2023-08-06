@@ -18,29 +18,40 @@ const textColor = "#333";
 const textColorDark = "#222";
 */
 
+html, body {
+  margin: 0;
+  height: 100%;
+}
+
 body {
   background-color: #ffdc9f;
   color: #1c1976;
   font-family: 'Varela Round', sans-serif;
+  height: auto;
 }
 
 .title {
-  margin-top: 5vh;
+  height: 10vh;
+  line-height: 10vh;
+  text-align: center;
+  margin: 0;
 }
 
 .main {
   display: flex;
   flex-direction: column;
   align-items: center;
+  height: 90vh;
 }
 
 section {
   display: flex;
-  justify-content: center;
+  height: 100%;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
 .start-game {
-  margin-top: 5vh;
   display: flex;
   flex-direction: column;
   gap: 5vh;
@@ -73,27 +84,22 @@ input[type="radio"] {
   cursor: pointer;
   background-color: #1c1976;
   color: #ffdc9f;
+  transition: color 0.2s, background-color 0.2s;
 }
 
 .game {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 5vh;
-}
-
-.new-game-button {
-  margin-top: 5vh;
 }
 
 .board {
   width: 60vw;
   height: 60vw;
-  border: 1px solid black;
 }
 
 .cell {
-  border: 1px solid black;
+  border: 1px solid #1c1976;
   width: 20vw;
   height: 20vw;
 }
@@ -101,4 +107,31 @@ input[type="radio"] {
 .cell-value {
   font-weight: bolder;
   font-size: 200%;
+}
+
+.new-game,
+.leaderbards {
+  width: 100vw;
+  height: 5vh;
+  display: flex;
+  justify-content: center;
+}
+
+.game-button {
+	background: #1c1976;
+	color: #ffdc9f;
+  border: none;
+	padding: 0;
+	outline: inherit;
+  width: 40vw;
+  height: 5vh;
+  border-radius: 50%;
+  font-size:larger
+}
+
+.game-button:hover {
+	cursor: pointer;
+	color: #1c1976;
+	background: #ffdc9f;
+	border: 2px solid #1c1976;
 }

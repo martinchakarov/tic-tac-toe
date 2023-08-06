@@ -13,7 +13,6 @@ export default function Home(props) {
                     O
                 </label>
             </div>
-            <button type="button" className="new-game-button btn btn-outline-primary btn-lg">Start Game</button>
       </section>
     )
 }
