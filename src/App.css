@@ -150,7 +150,7 @@ input[type="radio"] {
   text-align: center;
 }
 
-@media (orientation: landscape) {
+@media (orientation: landscape) and (max-height: 500px) {
   .game {
     flex-direction: row;
     gap: 10vw;

@@ -3,8 +3,11 @@ import Board from './components/Board';
 import Home from './components/Home';
 import Leaderboards from './components/Leaderboards';
 import { useState, useEffect } from 'react';
+import ConfettiExplosion from 'react-confetti-explosion';
 
 function App() {
+
+  const [isExploding, setIsExploding] = useState(false);
 
   const [results, setResults] = useState({
     player: {
@@ -133,6 +136,7 @@ function makeOpponentMove(currentBoardState) {
   useEffect(() => {
     setMessage(prevState => {
       if (winner === chars.playerChar) {
+        setIsExploding(true);
         return 'You win!';
       } else if (winner === chars.opponentChar) {
         return 'You lose.';
@@ -234,6 +238,7 @@ function makeOpponentMove(currentBoardState) {
 
     setWinner(null);
     setIsPlayersTurn(true);
+    setIsExploding(false);
   }
 
   function showLeaderboards(e) {
@@ -266,6 +271,7 @@ function makeOpponentMove(currentBoardState) {
         <h1 className='title'>Tic-Tac-Toe</h1>
       </header>
       <main className='main'>
+      <>{isExploding && <ConfettiExplosion />}</>
       { gameState.newGame 
         ? <Home chooseChar={chooseChar} chars={chars}/>
         : viewLeaderboards 
@@ -282,6 +288,7 @@ function makeOpponentMove(currentBoardState) {
                   winner={winner} 
                   message={message}
                   showLeaderboards={showLeaderboards}
+                  isExploding={isExploding}
                   />
       }
       </main>
