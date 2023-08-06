@@ -1,23 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
 
 
-/* 
-// Primary colors
-const primaryColor = "#f5f5f5";
-const primaryDarkColor = "#e7e7e7";
-
-// Secondary colors
-const secondaryColor = "#b3d9ff";
-const secondaryDarkColor = "#99c7ff";
-
-// Background color
-const backgroundColor = "#f7f7f7";
-
-// Text colors
-const textColor = "#333";
-const textColorDark = "#222";
-*/
-
 html, body {
   margin: 0;
   height: 100%;
@@ -35,6 +18,11 @@ body {
   line-height: 10vh;
   text-align: center;
   margin: 0;
+}
+
+.instructions {
+  font-size: xxx-large;
+  text-align: center;
 }
 
 .main {
@@ -93,6 +81,13 @@ input[type="radio"] {
   align-items: center;
 }
 
+.game-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10vh;
+}
+
 .board {
   width: 60vw;
   height: 60vw;
@@ -106,7 +101,7 @@ input[type="radio"] {
 
 .cell-value {
   font-weight: bolder;
-  font-size: 200%;
+  font-size: 300%;
 }
 
 .new-game,
@@ -153,4 +148,38 @@ input[type="radio"] {
 .leaderboards-table > tbody > tr > td,
 .leaderboards-table > thead > th {
   text-align: center;
+}
+
+@media (min-width: 1000px) {
+  .game {
+    flex-direction: row;
+    gap: 10vw;
+  }
+
+  .board {
+    width: 30vw;
+    height: 30vw;
+  }
+
+  .cell {
+    width: 10vw;
+    height: 10vw;
+  }
+
+  .cell-value {
+    font-weight: bolder;
+    font-size: 400%;
+  }
+}
+
+@media (min-width: 600px) {
+
+  .title {
+    font-size: 400%;
+  }
+  
+  .leaderboards-table > tbody > tr > td,
+  .leaderboards-table > thead > th {
+  font-size: 200%
+}
 }

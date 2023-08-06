@@ -22,6 +22,8 @@ export default function Board(props) {
                     </tr>
                 </tbody>
             </table>
+            <div className="game-panel">
+
             <div className="end-game-message">
             {props.winner
             ? <h3 className="message">{props.message}</h3>
@@ -36,6 +38,7 @@ export default function Board(props) {
             {props.gameState.gameOver
             ? <button type="button" className="game-button new-game-button" onClick={(e) => props.newGame(e)}>New Game</button> 
             : ''}
+            </div>
             </div>
         </section>
     )
