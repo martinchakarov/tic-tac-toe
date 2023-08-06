@@ -150,6 +150,50 @@ input[type="radio"] {
   text-align: center;
 }
 
+@media (orientation: landscape) {
+  .game {
+    flex-direction: row;
+    gap: 10vw;
+  }
+
+  .board {
+    width: 30vw;
+    height: 30vw;
+  }
+
+  .cell {
+    width: 10vw;
+    height: 10vw;
+  }
+
+  .cell-value {
+    font-weight: bolder;
+    font-size: 200%;
+  }
+
+  .game-button {
+    height: 10vh;
+  }
+
+  .leaderboards-main,
+  .instructions {
+    padding-top: 10vh;
+  }
+}
+
+@media (min-width: 600px) {
+
+  .title {
+    font-size: 400%;
+    padding-top: 5vh;
+  }
+  
+  .leaderboards-table > tbody > tr > td,
+  .leaderboards-table > thead > th {
+  font-size: 200%
+  }
+}
+
 @media (min-width: 1000px) {
   .game {
     flex-direction: row;
@@ -170,16 +214,4 @@ input[type="radio"] {
     font-weight: bolder;
     font-size: 400%;
   }
-}
-
-@media (min-width: 600px) {
-
-  .title {
-    font-size: 400%;
-  }
-  
-  .leaderboards-table > tbody > tr > td,
-  .leaderboards-table > thead > th {
-  font-size: 200%
-}
 }
